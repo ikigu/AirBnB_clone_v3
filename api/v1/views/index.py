@@ -38,3 +38,7 @@ def stats():
         objects_dict[key] = storage.count(value)
 
     return jsonify(objects_dict)
+
+
+if __name__ == "__main__":
+    pass
