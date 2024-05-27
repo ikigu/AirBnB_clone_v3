@@ -73,8 +73,6 @@ def update_state(state_id):
 
     state_to_update_kwargs = request.get_json(silent=True)
 
-    print(state_to_update_kwargs)
-
     if not state_to_update_kwargs:
         return make_response(jsonify({"error": "Not a JSON"}), 400)
 
