@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""API for users"""
+"""API for users. Contains CRUD routes"""
 
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
@@ -22,7 +22,7 @@ def users():
 @app_views.route("/users/<user_id>", methods=["GET"],
                  strict_slashes=False)
 def get_single_user(user_id):
-    """Returns a single user"""
+    """Returns a single user from storage"""
     user = storage.get(User, user_id)
 
     if user is None:
@@ -59,7 +59,7 @@ def create_user():
     for attribute in ["email", "password"]:
         if attribute not in new_user_kwargs:
             return make_response(jsonify(
-                {"error": f"Missing {attribute}"}), 400)
+                {"error": "Missing {}".format(attribute)}), 400)
 
     new_user_object = User(**new_user_kwargs)
     new_user_object.save()
@@ -70,7 +70,7 @@ def create_user():
 @app_views.route("/users/<user_id>", methods=["PUT"],
                  strict_slashes=False)
 def update_user(user_id):
-    """Updates an user"""
+    """Updates a user in storage"""
 
     user_to_update_kwargs = request.get_json(silent=True)
 

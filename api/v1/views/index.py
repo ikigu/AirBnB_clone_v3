@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""API routes"""
+"""Shared API routes. Contains status and stats"""
 
 from api.v1.views import app_views
 from flask import jsonify
@@ -15,7 +15,7 @@ from models.user import User
 
 @app_views.route('/status', methods=["GET"], strict_slashes=False)
 def status():
-    """Status"""
+    """Status API check. Returns status of API"""
     return jsonify({"status": "OK"})
 
 
