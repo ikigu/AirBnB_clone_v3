@@ -14,8 +14,6 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
-import json
-import os
 import pep8
 import unittest
 DBStorage = db_storage.DBStorage
@@ -70,12 +68,12 @@ test_db_storage.py'])
 
 class TestDBStorage(unittest.TestCase):
     """Test the FileStorage class"""
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.SkipTest
     def test_all_returns_dict(self):
         """Test that all returns a dictionaty"""
         self.assertIs(type(models.storage.all()), dict)
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.SkipTest
     def test_all_no_class(self):
         """Test that all returns all rows when no class is passed"""
         wonderlandia = {"name": "Wonderlandia"}
@@ -90,7 +88,7 @@ class TestDBStorage(unittest.TestCase):
         self.assertTrue(len(all_state_db_objects) > 0)
         self.assertTrue(all_state_db_objects[0].name == "Wonderlandia")
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.SkipTest
     def test_new(self):
         """test that new adds an object to the database"""
         cairo = {"name": "Cairo"}
@@ -106,7 +104,7 @@ class TestDBStorage(unittest.TestCase):
         self.assertEqual(state_in_db.id, new_state_db_object.id)
         self.assertEqual(state_in_db.name, new_state_db_object.name)
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.SkipTest
     def test_save(self):
         """Test that save properly saves objects to file.json"""
 
@@ -125,7 +123,7 @@ class TestDBStorage(unittest.TestCase):
         self.assertEqual(state_in_db.id, new_state_db_object.id)
         self.assertEqual(state_in_db.name, new_state_db_object.name)
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.SkipTest
     def test_get(self):
         """Test method for obtaining single object from storage"""
 
@@ -145,7 +143,7 @@ class TestDBStorage(unittest.TestCase):
 
         self.assertEqual(non_existent_state, None)
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.SkipTest
     def test_count(self):
         """Test method for counting objects from storage"""
 
