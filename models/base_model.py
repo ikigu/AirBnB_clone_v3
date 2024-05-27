@@ -23,8 +23,8 @@ class BaseModel:
     """The BaseModel class from which future classes will be derived"""
     if models.storage_t == "db":
         id = Column(String(60), primary_key=True)
-        created_at = Column(DateTime, default=datetime.utcnow)
-        updated_at = Column(DateTime, default=datetime.utcnow)
+        created_at = Column(DateTime, default=datetime.now)
+        updated_at = Column(DateTime, default=datetime.now)
 
     def __init__(self, *args, **kwargs):
         """Initialization of the base model"""
@@ -39,7 +39,7 @@ class BaseModel:
             if kwargs.get("updated_at", None) and type(self.updated_at) is str:
                 self.updated_at = datetime.strptime(kwargs["updated_at"], time)
             else:
-                self.updated_at = datetime.utcnow()
+                self.updated_at = datetime.now()
             if kwargs.get("id", None) is None:
                 self.id = str(uuid.uuid4())
         else:
