@@ -15,7 +15,7 @@ app.register_blueprint(app_views)
 
 
 @app.teardown_appcontext
-def teardown():
+def teardown(self):
     """Tears down the storage"""
     storage.close()
 
