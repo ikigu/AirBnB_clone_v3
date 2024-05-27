@@ -18,8 +18,6 @@ def states():
     for state in states.values():
         all_states.append(state.to_dict())
 
-    print(all_states[0])
-
     return jsonify(all_states)
 
 
