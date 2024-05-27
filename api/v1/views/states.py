@@ -53,9 +53,7 @@ def delete_single_state(state_id):
 def create_state():
     """Creates a new state"""
 
-    new_state_kwargs = request.get_json()
-
-    # TODO: Make sure this NOT a JSON response works
+    new_state_kwargs = request.get_json(silent=True)
 
     if not new_state_kwargs:
         return make_response(jsonify({"error": "Not a JSON"}), 400)
@@ -73,7 +71,9 @@ def create_state():
 def update_state(state_id):
     """Updates a state"""
 
-    state_to_update_kwargs = request.get_json()
+    state_to_update_kwargs = request.get_json(silent=True)
+
+    print(state_to_update_kwargs)
 
     if not state_to_update_kwargs:
         return make_response(jsonify({"error": "Not a JSON"}), 400)
