@@ -80,8 +80,18 @@ class DBStorage:
         """call remove() method on the private session attribute"""
         self.__session.remove()
 
-    def get(self, cls, id):
-        """Retrieves one object from storage."""
+    def get(self, cls, id: str) -> dict:
+        """
+        Retrieves object of given id from storage.
+
+        Params:
+            self (DBStorage): represents instance of DBStorage
+            cls (Amenity, City, Place, Review, State, User): The table
+            id (str): The id of the object to retrieve from storage
+
+        Return:
+            The object retrieved from storage if it exists, None otherwise
+        """
         obj = self.__session.query(cls).filter_by(id=id).first()
 
         return obj
