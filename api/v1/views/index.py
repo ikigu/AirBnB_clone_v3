@@ -32,7 +32,7 @@ def stats():
         "users": User
     }
 
-    objects_dict: dict = {}
+    objects_dict = {}
 
     for key, value in objects.items():
         objects_dict[key] = storage.count(value)
