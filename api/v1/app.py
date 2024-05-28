@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Creates the app.
+Creates the app. Lengthy documentation, blah, blah, blah.
 """
 
 from api.v1.views import app_views
