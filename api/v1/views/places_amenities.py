@@ -7,7 +7,7 @@ Handles all default RESTful API actions
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
 from models import storage, storage_t
-from models.city import City
+from models.amenity import Amenity
 from models.place import Place
 from models.user import User
 
@@ -24,3 +24,27 @@ def get_place_amenities(place_id):
     amenities = [amenity.to_dict() for amenity in place.amenities]
 
     return jsonify(amenities)
+
+
+@app_views.route("/places/<place_id>/amenities/<amenity_id>",
+                 methods=["DELETE"], strict_slashes=False)
+def delete_amenity_from_place(place_id, amenity_id):
+    place = storage.get(Place, place_id)
+
+    print("\n\nDelete\n\n")
+
+    if not place:
+        abort(404)
+
+    amenity = storage.get(Amenity, amenity_id)
+
+    if not amenity:
+        abort(404)
+
+    if amenity not in place.amenities:
+        abort(404)
+
+    place.amenities.remove(amenity)
+    storage.save()
+
+    return (jsonify({}))
