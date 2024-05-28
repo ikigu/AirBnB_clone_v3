@@ -26,7 +26,7 @@ def stats():
     objects = {
         "amenities": Amenity,
         "cities": City,
-        "place": Place,
+        "places": Place,
         "reviews": Review,
         "states": State,
         "users": User
