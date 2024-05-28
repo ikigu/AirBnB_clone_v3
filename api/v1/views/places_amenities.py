@@ -26,34 +26,34 @@ def get_place_amenities(place_id):
     return jsonify(amenities)
 
 
-# @app_views.route("/places/<place_id>/amenities/<amenity_id>",
-#                  methods=["DELETE"], strict_slashes=False)
-# def delete_amenity_from_place(place_id, amenity_id):
-#     """Unlink an amenity object from a place"""
-#     place = storage.get(Place, place_id)
+@app_views.route("/places/<place_id>/amenities/<amenity_id>",
+                 methods=["DELETE"], strict_slashes=False)
+def delete_amenity_from_place(place_id, amenity_id):
+    """Unlink an amenity object from a place"""
+    place = storage.get(Place, place_id)
 
-#     if not place:
-#         abort(404)
+    if not place:
+        abort(404)
 
-#     amenity = storage.get(Amenity, amenity_id)
+    amenity = storage.get(Amenity, amenity_id)
 
-#     if not amenity:
-#         abort(404)
+    if not amenity:
+        abort(404)
 
-#     if storage_t == "db":
-#         if amenity not in place.amenities:
-#             abort(404)
+    if storage_t == "db":
+        if amenity not in place.amenities:
+            abort(404)
 
-#         place.amenities.remove(amenity)
-#     else:
-#         if amenity_id not in place.amenity_ids:
-#             abort(404)
+        place.amenities.remove(amenity)
+    else:
+        if amenity_id not in place.amenity_ids:
+            abort(404)
 
-#         place.amenity_ids.remove(amenity_id)
+        place.amenity_ids.remove(amenity_id)
 
-#     storage.save()
+    storage.save()
 
-#     return (jsonify({}))
+    return (jsonify({}))
 
 
 @app_views.route("/places/<place_id>/amenities/<amenity_id>",
