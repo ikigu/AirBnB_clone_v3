@@ -13,7 +13,7 @@ def states():
     "Returns all states from storage"
     states = storage.all(State)
 
-    all_states: list = []
+    all_states = []
 
     for state in states.values():
         all_states.append(state.to_dict())
