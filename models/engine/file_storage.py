@@ -71,7 +71,7 @@ class FileStorage:
 
     def get(self, cls, id):
         """Retrieves single object of cls and id"""
-        return self.__objects.get(f"{cls.__name__}.{id}")
+        return self.__objects.get("{}.{}".format(cls.__name__, id))
 
     def count(self, cls=None):
         """Counts objects"""
