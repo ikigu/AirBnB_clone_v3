@@ -136,7 +136,7 @@ def places_search():
 
     places = []
 
-    if json_empty == True:
+    if json_empty is True:
         places = [place for place in storage.all(Place).values()]
 
     states_list_in_search_kwargs = search_kwargs.get("states", [])
@@ -146,8 +146,10 @@ def places_search():
         for state_id in states_list_in_search_kwargs:
             state = storage.get(State, state_id)
 
-            for city in state.cities:
-                places = places + [place for place in city.places]
+            if state is not None:
+                for city in state.cities:
+                    if city is not None and len(city.places) > 0:
+                        places = places + [place for place in city.places]
 
     cities_list_in_search_kwargs = search_kwargs.get("cities", [])
 
@@ -156,10 +158,8 @@ def places_search():
         for city_id in cities_list_in_search_kwargs:
             city = storage.get(City, city_id)
 
-            if not city:
-                abort(404)
-
-            places = places + [place for place in city.places]
+            if city is not None and len(city.places) > 0:
+                places = places + [place for place in city.places]
 
     unique_places = []
 
